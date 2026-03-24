@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24/7 Availability - Serenity Healthcare | Round-the-Clock Medical Care</title>
+    <meta name="description" content="Access medical care 24/7 with Serenity Healthcare. Round-the-clock doctor availability, emergency consultations, and continuous support.">
+    <meta name="keywords" content="24/7 healthcare, round the clock doctor, emergency medical care, always available doctors, 24 hour telemedicine">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="24/7 Availability - Serenity Healthcare">
+    <meta property="og:description" content="Access medical care whenever you need it, day or night">
+    <meta property="og:image" content="https://serenity-healthcare.com/og-image.jpg">
+    <meta property="og:url" content="https://serenity-healthcare.com/availability">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --background: #ffffff;
+            --background-secondary: #f9fafb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background-secondary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-brand i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Main Container */
+        .availability-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 1.5rem 2rem;
+        }
+
+        /* Header */
+        .availability-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .availability-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .availability-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Live Status */
+        .live-status {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge i {
+            font-size: 1.25rem;
+        }
+
+        .live-time {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .live-date {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .availability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .availability-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+        }
+
+        .availability-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Time Zones */
+        .timezone-section {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .timezone-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .timezone-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .timezone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .timezone-card {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .timezone-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .timezone-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .timezone-time {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .timezone-date {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .timezone-status {
+            margin-top: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Emergency Services */
+        .emergency-section {
+            background: linear-gradient(135deg, var(--error-color), #dc2626);
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .emergency-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .emergency-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+        }
+
+        .emergency-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .emergency-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .emergency-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.25rem;
+        }
+
+        .emergency-content h3 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .emergency-content p {
+            opacity: 0.9;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        /* Doctor Schedule */
+        .schedule-section {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .schedule-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .schedule-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .schedule-card {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .schedule-time {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-doctors {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .schedule-availability {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .availability-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-title {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .testimonial-rating {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-time {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-emergency {
+            background: var(--error-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-emergency:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu,
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .availability-header h1 {
+                font-size: 2rem;
+            }
+
+            .live-status {
+                padding: 1.5rem;
+            }
+
+            .live-time {
+                font-size: 1.5rem;
+            }
+
+            .availability-grid,
+            .features-grid,
+            .timezone-grid,
+            .emergency-features,
+            .schedule-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-active .nav-menu {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            gap: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .nav-actions {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 280px;
+            left: 0;
+            right: 0;
+            background: var(--background-secondary);
+            padding: 1rem 2rem;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Serenity</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#doctors" class="nav-link">Doctors</a></li>
+                <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost">Sign In</a>
+                <a href="register.html" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="availability-container">
+        <!-- Header -->
+        <div class="availability-header">
+            <h1>24/7 Availability</h1>
+            <p>Access quality healthcare whenever you need it. Our doctors are available round the clock, every day of the year.</p>
+        </div>
+
+        <!-- Live Status -->
+        <div class="live-status">
+            <div class="status-badge">
+                <i class="fas fa-circle blink"></i>
+                <span>SYSTEM ONLINE</span>
+            </div>
+            <div class="live-time" id="live-time">Loading...</div>
+            <div class="live-date" id="live-date">Loading...</div>
+            
+            <div class="availability-grid">
+                <div class="availability-stat">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Doctor Availability</div>
+                </div>
+                <div class="availability-stat">
+                    <div class="stat-number">< 2min</div>
+                    <div class="stat-label">Avg. Wait Time</div>
+                </div>
+                <div class="availability-stat">
+                    <div class="stat-number">365</div>
+                    <div class="stat-label">Days Per Year</div>
+                </div>
+                <div class="availability-stat">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Doctors Online</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Round-the-Clock Access</h3>
+                <p>Get medical care any time, day or night. No waiting for office hours or appointments.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Global Time Zones</h3>
+                <p>Access doctors in your time zone or get care across different time zones seamlessly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Instant Connect</h3>
+                <p>Connect with a doctor in under 2 minutes through video, phone, or chat.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-hospital"></i>
+                </div>
+                <h3>Emergency Support</h3>
+                <p>Get immediate medical guidance for urgent health concerns, 24/7.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <h3>Specialist Access</h3>
+                <p>Connect with specialists across all medical fields, available around the clock.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Mobile Ready</h3>
+                <p>Access healthcare from anywhere using your smartphone, tablet, or computer.</p>
+            </div>
+        </div>
+
+        <!-- Time Zones -->
+        <div class="timezone-section">
+            <div class="timezone-header">
+                <h2>Global Availability</h2>
+                <p>Doctors available across all major time zones</p>
+            </div>
+            <div class="timezone-grid">
+                <div class="timezone-card">
+                    <div class="timezone-name">New York</div>
+                    <div class="timezone-time" id="ny-time">Loading...</div>
+                    <div class="timezone-date" id="ny-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+                <div class="timezone-card">
+                    <div class="timezone-name">London</div>
+                    <div class="timezone-time" id="london-time">Loading...</div>
+                    <div class="timezone-date" id="london-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+                <div class="timezone-card">
+                    <div class="timezone-name">Tokyo</div>
+                    <div class="timezone-time" id="tokyo-time">Loading...</div>
+                    <div class="timezone-date" id="tokyo-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+                <div class="timezone-card">
+                    <div class="timezone-name">Sydney</div>
+                    <div class="timezone-time" id="sydney-time">Loading...</div>
+                    <div class="timezone-date" id="sydney-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+                <div class="timezone-card">
+                    <div class="timezone-name">Dubai</div>
+                    <div class="timezone-time" id="dubai-time">Loading...</div>
+                    <div class="timezone-date" id="dubai-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+                <div class="timezone-card">
+                    <div class="timezone-name">Los Angeles</div>
+                    <div class="timezone-time" id="la-time">Loading...</div>
+                    <div class="timezone-date" id="la-date">Loading...</div>
+                    <div class="timezone-status">Available</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Emergency Services -->
+        <div class="emergency-section">
+            <div class="emergency-header">
+                <h2>Emergency Services Available 24/7</h2>
+                <p>Immediate medical support when you need it most</p>
+            </div>
+            <div class="emergency-features">
+                <div class="emergency-item">
+                    <div class="emergency-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <div class="emergency-content">
+                        <h3>Urgent Care</h3>
+                        <p>Immediate consultation for non-life-threatening emergencies</p>
+                    </div>
+                </div>
+                <div class="emergency-item">
+                    <div class="emergency-icon">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <div class="emergency-content">
+                        <h3>Triage Support</h3>
+                        <p>Professional assessment to determine care urgency</p>
+                    </div>
+                </div>
+                <div class="emergency-item">
+                    <div class="emergency-icon">
+                        <i class="fas fa-notes-medical"></i>
+                    </div>
+                    <div class="emergency-content">
+                        <h3>Emergency Prescriptions</h3>
+                        <p>Quick prescription for urgent medication needs</p>
+                    </div>
+                </div>
+                <div class="emergency-item">
+                    <div class="emergency-icon">
+                        <i class="fas fa-hospital-symbol"></i>
+                    </div>
+                    <div class="emergency-content">
+                        <h3>Hospital Referral</h3>
+                        <p>Direct referral to nearest emergency facility</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Doctor Schedule -->
+        <div class="schedule-section">
+            <div class="schedule-header">
+                <h2>Doctor Availability Schedule</h2>
+                <p>Full coverage across all time zones and shifts</p>
+            </div>
+            <div class="schedule-grid">
+                <div class="schedule-card">
+                    <div class="schedule-time">12:00 AM - 6:00 AM</div>
+                    <div class="schedule-doctors">Night Shift Team</div>
+                    <div class="schedule-availability">
+                        <div class="availability-indicator"></div>
+                        <span>25+ Doctors Available</span>
+                    </div>
+                </div>
+                <div class="schedule-card">
+                    <div class="schedule-time">6:00 AM - 12:00 PM</div>
+                    <div class="schedule-doctors">Morning Shift Team</div>
+                    <div class="schedule-availability">
+                        <div class="availability-indicator"></div>
+                        <span>45+ Doctors Available</span>
+                    </div>
+                </div>
+                <div class="schedule-card">
+                    <div class="schedule-time">12:00 PM - 6:00 PM</div>
+                    <div class="schedule-doctors">Afternoon Shift Team</div>
+                    <div class="schedule-availability">
+                        <div class="availability-indicator"></div>
+                        <span>60+ Doctors Available</span>
+                    </div>
+                </div>
+                <div class="schedule-card">
+                    <div class="schedule-time">6:00 PM - 12:00 AM</div>
+                    <div class="schedule-doctors">Evening Shift Team</div>
+                    <div class="schedule-availability">
+                        <div class="availability-indicator"></div>
+                        <span>35+ Doctors Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials -->
+        <div class="testimonials-section">
+            <div class="testimonials-header">
+                <h2>24/7 Care Stories</h2>
+                <p>Real experiences from patients who needed care at any hour</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Got sick at 2 AM and connected with a doctor in 90 seconds. The prescription was sent to my 24-hour pharmacy immediately. Lifesaver!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=12" alt="Alex T." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Alex T.</div>
+                            <div class="author-title">Emergency Care at 2 AM</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-time">Consultation: March 15, 2:15 AM</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"Traveling internationally and needed medical advice. Connected with a doctor who understood my situation and helped me find local care."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=13" alt="Maria L." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Maria L.</div>
+                            <div class="author-title">International Travel Support</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-time">Consultation: March 20, 11:30 PM</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-quote">"My child had a fever at midnight. The pediatrician was amazing, calm, and professional. Got the right advice and peace of mind."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pravatar.cc/150?img=14" alt="David K." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">David K.</div>
+                            <div class="author-title">Pediatric Care at Midnight</div>
+                        </div>
+                    </div>
+                    <div class="testimonial-time">Consultation: March 22, 12:45 AM</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Need Care Now? We're Here 24/7</h2>
+            <p>Connect with a doctor immediately, no appointment needed</p>
+            <div class="cta-buttons">
+                <a href="scheduling.html" class="btn btn-primary">
+                    <i class="fas fa-video"></i>
+                    Start Consultation
+                </a>
+                <a href="#" class="btn btn-emergency">
+                    <i class="fas fa-phone-alt"></i>
+                    Emergency Call
+                </a>
+                <a href="#" class="btn btn-outline">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication System
+        class AuthSystem {
+            constructor() {
+                this.initializeAuth();
+            }
+
+            initializeAuth() {
+                // Check authentication on page load
+                if (!this.isAuthenticated()) {
+                    this.redirectToLogin();
+                }
+            }
+
+            isAuthenticated() {
+                const user = localStorage.getItem('serenity_user');
+                if (!user) return false;
+                
+                const userData = JSON.parse(user);
+                const expiresAt = new Date(userData.expiresAt);
+                return expiresAt > new Date();
+            }
+
+            getCurrentUser() {
+                const user = localStorage.getItem('serenity_user');
+                return user ? JSON.parse(user) : null;
+            }
+
+            redirectToLogin() {
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+            }
+
+            logout() {
+                localStorage.removeItem('serenity_user');
+                localStorage.removeItem('serenity_session');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize Auth System
+        const authSystem = new AuthSystem();
+
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navActions = document.querySelector('.nav-actions');
+            const body = document.body;
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    body.classList.toggle('mobile-menu-active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    body.classList.remove('mobile-menu-active');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target) && !navActions.contains(e.target)) {
+                    body.classList.remove('mobile-menu-active');
+                }
+            });
+
+            // Display current user info
+            const currentUser = authSystem.getCurrentUser();
+            if (currentUser) {
+                console.log('Logged in as:', currentUser.firstName, currentUser.lastName);
+                // Update UI to show logged-in user
+                updateUIForLoggedInUser(currentUser);
+            }
+        });
+
+        function updateUIForLoggedInUser(user) {
+            // Update navigation to show logged-in state
+            const navActions = document.querySelector('.nav-actions');
+            if (navActions) {
+                navActions.innerHTML = `
+                    <div class="user-info">
+                        <span>Welcome, ${user.firstName}</span>
+                        <button class="btn btn-ghost" onclick="authSystem.logout()">Sign Out</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Real-time Clock Updates
+        function updateClocks() {
+            const now = new Date();
+            
+            // Update main clock
+            const liveTime = document.getElementById('live-time');
+            const liveDate = document.getElementById('live-date');
+            if (liveTime && liveDate) {
+                liveTime.textContent = now.toLocaleTimeString('en-US', { 
+                    hour: '2-digit', 
+                    minute: '2-digit', 
+                    second: '2-digit',
+                    hour12: true 
+                });
+                liveDate.textContent = now.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+            
+            // Update timezone clocks
+            const timezones = {
+                'ny': { offset: -5, element: 'ny-time', dateElement: 'ny-date' },
+                'london': { offset: 0, element: 'london-time', dateElement: 'london-date' },
+                'tokyo': { offset: 9, element: 'tokyo-time', dateElement: 'tokyo-date' },
+                'sydney': { offset: 11, element: 'sydney-time', dateElement: 'sydney-date' },
+                'dubai': { offset: 4, element: 'dubai-time', dateElement: 'dubai-date' },
+                'la': { offset: -8, element: 'la-time', dateElement: 'la-date' }
+            };
+            
+            for (const [city, data] of Object.entries(timezones)) {
+                const timeElement = document.getElementById(data.element);
+                const dateElement = document.getElementById(data.dateElement);
+                
+                if (timeElement && dateElement) {
+                    const cityTime = new Date(now.getTime() + (data.offset * 60 * 60 * 1000) + (now.getTimezoneOffset() * 60 * 1000));
+                    
+                    timeElement.textContent = cityTime.toLocaleTimeString('en-US', { 
+                        hour: '2-digit', 
+                        minute: '2-digit', 
+                        hour12: true 
+                    });
+                    
+                    dateElement.textContent = cityTime.toLocaleDateString('en-US', { 
+                        weekday: 'short', 
+                        month: 'short', 
+                        day: 'numeric' 
+                    });
+                }
+            }
+        }
+
+        // Initialize clocks and update every second
+        updateClocks();
+        setInterval(updateClocks, 1000);
+
+        // Simulate live doctor count updates
+        function updateDoctorCount() {
+            const doctorCount = document.querySelector('.stat-number:last-child');
+            if (doctorCount) {
+                const baseCount = 150;
+                const variation = Math.floor(Math.random() * 20) - 10;
+                const newCount = baseCount + variation;
+                doctorCount.textContent = newCount + '+';
+            }
+        }
+
+        // Update doctor count every 30 seconds
+        setInterval(updateDoctorCount, 30000);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sernity Healthcare Availability Page initialized');
+        });
+    </script>
+</body>
+</html>

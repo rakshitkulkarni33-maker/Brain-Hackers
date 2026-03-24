@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App - Serenity Healthcare | Healthcare on the Go</title>
+    <meta name="description" content="Download the Serenity Healthcare mobile app. Access doctors, prescriptions, and medical records from your smartphone. Available on iOS and Android.">
+    <meta name="keywords" content="mobile app, healthcare app, telemedicine app, doctor app, iOS app, Android app, mobile healthcare">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Mobile App - Serenity Healthcare">
+    <meta property="og:description" content="Take your healthcare with you wherever you go">
+    <meta property="og:image" content="https://serenity-healthcare.com/og-image.jpg">
+    <meta property="og:url" content="https://serenity-healthcare.com/mobile-app">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --info-color: #3b82f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --background: #ffffff;
+            --background-secondary: #f9fafb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--background-secondary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-brand i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Main Container */
+        .app-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 1.5rem 2rem;
+        }
+
+        /* Header */
+        .app-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .app-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .app-header p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* App Showcase */
+        .app-showcase {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-xl);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .showcase-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .showcase-text {
+            text-align: left;
+        }
+
+        .showcase-text h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-text p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .app-phones {
+            position: relative;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            width: 200px;
+            height: 380px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 30px;
+            padding: 10px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-10px);
+        }
+
+        .phone-mockup.iphone {
+            transform: rotate(-5deg);
+            z-index: 2;
+        }
+
+        .phone-mockup.android {
+            transform: rotate(5deg);
+            margin-left: -50px;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .phone-header {
+            background: var(--background-secondary);
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .phone-content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .app-feature-mini {
+            background: var(--background-secondary);
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.625rem;
+            color: var(--text-secondary);
+        }
+
+        /* Download Buttons */
+        .download-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1rem;
+            color: white;
+            background: var(--text-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .download-btn.ios {
+            background: #000000;
+        }
+
+        .download-btn.android {
+            background: #3DDC84;
+        }
+
+        .download-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Screenshots Section */
+        .screenshots-section {
+            background: white;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .screenshots-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .screenshots-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .screenshot-card {
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+            padding: 1rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .screenshot-mockup {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .screenshot-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .screenshot-desc {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Tech Specs */
+        .specs-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .specs-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .specs-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .spec-item {
+            text-align: center;
+        }
+
+        .spec-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+        }
+
+        .spec-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-desc {
+            opacity: 0.9;
+            font-size: 0.875rem;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            margin-bottom: 3rem;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .reviews-header h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .review-rating {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .review-text {
+            font-size: 1.125rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-platform {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: var(--border-radius-xl);
+            padding: 3rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 2rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline-white {
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+        }
+
+        .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu,
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .app-header h1 {
+                font-size: 2rem;
+            }
+
+            .showcase-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .showcase-text {
+                text-align: center;
+            }
+
+            .app-phones {
+                height: 300px;
+            }
+
+            .phone-mockup {
+                width: 150px;
+                height: 280px;
+            }
+
+            .phone-mockup.android {
+                margin-left: -30px;
+            }
+
+            .features-grid,
+            .screenshots-grid,
+            .specs-grid,
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-active .nav-menu {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            gap: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .nav-actions {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 280px;
+            left: 0;
+            right: 0;
+            background: var(--background-secondary);
+            padding: 1rem 2rem;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Serenity</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#doctors" class="nav-link">Doctors</a></li>
+                <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-ghost">Sign In</a>
+                <a href="register.html" class="btn btn-primary">Get Started</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <div class="app-header">
+            <h1>Mobile App</h1>
+            <p>Take your healthcare with you wherever you go. Access doctors, prescriptions, and medical records from your smartphone.</p>
+        </div>
+
+        <!-- App Showcase -->
+        <div class="app-showcase">
+            <div class="showcase-content">
+                <div class="showcase-text">
+                    <h2>Healthcare in Your Pocket</h2>
+                    <p>Download the Serenity Healthcare app and get instant access to medical care, anytime, anywhere. Connect with doctors, manage prescriptions, and access your medical records all from your smartphone.</p>
+                    
+                    <div class="download-buttons">
+                        <a href="#" class="download-btn ios">
+                            <i class="fab fa-apple"></i>
+                            <div>
+                                <div style="font-size: 0.75rem; opacity: 0.8;">Download on the</div>
+                                <div style="font-weight: 700;">App Store</div>
+                            </div>
+                        </a>
+                        <a href="#" class="download-btn android">
+                            <i class="fab fa-google-play"></i>
+                            <div>
+                                <div style="font-size: 0.75rem; opacity: 0.8;">Get it on</div>
+                                <div style="font-weight: 700;">Google Play</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="app-phones">
+                    <div class="phone-mockup iphone floating">
+                        <div class="phone-screen">
+                            <div class="phone-header">Serenity Health</div>
+                            <div class="phone-content">
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-video"></i> Video Consultation
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-calendar"></i> Appointment Booking
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-pills"></i> Prescriptions
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-file-medical"></i> Medical Records
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="phone-mockup android floating" style="animation-delay: 1s;">
+                        <div class="phone-screen">
+                            <div class="phone-header">Serenity Health</div>
+                            <div class="phone-content">
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-user-md"></i> Find Doctors
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-clock"></i> 24/7 Availability
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-comments"></i> Live Chat
+                                </div>
+                                <div class="app-feature-mini">
+                                    <i class="fas fa-bell"></i> Notifications
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Video Consultations</h3>
+                <p>HD video calls with doctors directly from your phone. No need for a computer - consult from anywhere.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Smart Scheduling</h3>
+                <p>Book, reschedule, or cancel appointments with just a few taps. Get reminders and never miss an appointment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <h3>Digital Prescriptions</h3>
+                <p>Access your prescriptions, request refills, and get medications sent to your preferred pharmacy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3>Medical Records</h3>
+                <p>View your complete medical history, test results, and health records securely on your device.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>24/7 Access</h3>
+                <p>Get medical care anytime, day or night. Emergency consultations and urgent care available 24/7.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Smart Notifications</h3>
+                <p>Receive appointment reminders, prescription alerts, and health tips personalized for you.</p>
+            </div>
+        </div>
+
+        <!-- Screenshots Section -->
+        <div class="screenshots-section">
+            <div class="screenshots-header">
+                <h2>App Screenshots</h2>
+                <p>See the Serenity Healthcare app in action</p>
+            </div>
+            <div class="screenshots-grid">
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="screenshot-title">Dashboard</div>
+                    <div class="screenshot-desc">Quick access to all healthcare services</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div class="screenshot-title">Doctor Search</div>
+                    <div class="screenshot-desc">Find and connect with certified doctors</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <div class="screenshot-title">Video Consultation</div>
+                    <div class="screenshot-desc">HD video calls with healthcare providers</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <div class="screenshot-title">Medical Records</div>
+                    <div class="screenshot-desc">Access your complete health history</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <div class="screenshot-title">Prescriptions</div>
+                    <div class="screenshot-desc">Manage medications and refills</div>
+                </div>
+                <div class="screenshot-card">
+                    <div class="screenshot-mockup">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="screenshot-title">Notifications</div>
+                    <div class="screenshot-desc">Stay updated with your health</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Specs -->
+        <div class="specs-section">
+            <div class="specs-header">
+                <h2>App Specifications</h2>
+                <p>Built with the latest technology for the best user experience</p>
+            </div>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="spec-title">Cross-Platform</div>
+                    <div class="spec-desc">Available on iOS and Android devices</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="spec-title">Secure & Private</div>
+                    <div class="spec-desc">HIPAA compliant with end-to-end encryption</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="spec-title">Lightning Fast</div>
+                    <div class="spec-desc">Optimized for speed and performance</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="spec-title">Offline Mode</div>
+                    <div class="spec-desc">Access records even without internet</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <div class="spec-title">Biometric Login</div>
+                    <div class="spec-desc">Secure access with fingerprint or Face ID</div>
+                </div>
+                <div class="spec-item">
+                    <div class="spec-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <div class="spec-title">Real-Time Sync</div>
+                    <div class="spec-desc">Instant synchronization across devices</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section">
+            <div class="reviews-header">
+                <h2>What Users Say</h2>
+                <p>Real reviews from app store users</p>
+            </div>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"This app has completely changed how I manage my healthcare. Being able to video call my doctor and get prescriptions sent directly to my pharmacy is incredible!"</p>
+                    <div class="review-author">
+                        <img src="https://i.pravatar.cc/150?img=18" alt="Sarah M." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Sarah M.</div>
+                            <div class="author-platform">iOS App Store</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"The 24/7 availability is a lifesaver. I needed medical advice at 2 AM and was connected with a doctor within minutes. Amazing service!"</p>
+                    <div class="review-author">
+                        <img src="https://i.pravatar.cc/150?img=19" alt="Mike R." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Mike R.</div>
+                            <div class="author-platform">Google Play</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="review-text">"Having all my medical records on my phone is so convenient. The app is easy to use and the video quality is excellent. Highly recommend!"</p>
+                    <div class="review-author">
+                        <img src="https://i.pravatar.cc/150?img=20" alt="Lisa K." class="author-avatar">
+                        <div class="author-info">
+                            <div class="author-name">Lisa K.</div>
+                            <div class="author-platform">iOS App Store</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Download the Serenity Healthcare App Today</h2>
+            <p>Join thousands of users who are already managing their healthcare on the go</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-white">
+                    <i class="fab fa-apple"></i>
+                    Download for iOS
+                </a>
+                <a href="#" class="btn btn-outline-white">
+                    <i class="fab fa-google-play"></i>
+                    Download for Android
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Authentication System
+        class AuthSystem {
+            constructor() {
+                this.initializeAuth();
+            }
+
+            initializeAuth() {
+                // Check authentication on page load
+                if (!this.isAuthenticated()) {
+                    this.redirectToLogin();
+                }
+            }
+
+            isAuthenticated() {
+                const user = localStorage.getItem('serenity_user');
+                if (!user) return false;
+                
+                const userData = JSON.parse(user);
+                const expiresAt = new Date(userData.expiresAt);
+                return expiresAt > new Date();
+            }
+
+            getCurrentUser() {
+                const user = localStorage.getItem('serenity_user');
+                return user ? JSON.parse(user) : null;
+            }
+
+            redirectToLogin() {
+                window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href);
+            }
+
+            logout() {
+                localStorage.removeItem('serenity_user');
+                localStorage.removeItem('serenity_session');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Initialize Auth System
+        const authSystem = new AuthSystem();
+
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navActions = document.querySelector('.nav-actions');
+            const body = document.body;
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    body.classList.toggle('mobile-menu-active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    body.classList.remove('mobile-menu-active');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target) && !navActions.contains(e.target)) {
+                    body.classList.remove('mobile-menu-active');
+                }
+            });
+
+            // Display current user info
+            const currentUser = authSystem.getCurrentUser();
+            if (currentUser) {
+                console.log('Logged in as:', currentUser.firstName, currentUser.lastName);
+                // Update UI to show logged-in user
+                updateUIForLoggedInUser(currentUser);
+            }
+        });
+
+        function updateUIForLoggedInUser(user) {
+            // Update navigation to show logged-in state
+            const navActions = document.querySelector('.nav-actions');
+            if (navActions) {
+                navActions.innerHTML = `
+                    <div class="user-info">
+                        <span>Welcome, ${user.firstName}</span>
+                        <button class="btn btn-ghost" onclick="authSystem.logout()">Sign Out</button>
+                    </div>
+                `;
+            }
+        }
+
+        // Download Button Interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtns = document.querySelectorAll('.download-btn');
+            
+            downloadBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const platform = this.classList.contains('ios') ? 'iOS' : 'Android';
+                    console.log(`Redirecting to ${platform} app store...`);
+                    
+                    // Simulate app store redirect
+                    if (platform === 'iOS') {
+                        console.log('Redirecting to App Store...');
+                    } else {
+                        console.log('Redirecting to Google Play Store...');
+                    }
+                });
+            });
+
+            // Screenshot card interactions
+            const screenshotCards = document.querySelectorAll('.screenshot-card');
+            
+            screenshotCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('.screenshot-title').textContent;
+                    console.log(`Viewing screenshot: ${title}`);
+                });
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sernity Healthcare Mobile App Page initialized');
+        });
+    </script>
+</body>
+</html>

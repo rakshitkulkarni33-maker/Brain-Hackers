@@ -1,0 +1,2901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serenity Healthcare - Digital Healthcare Platform</title>
+    <meta name="description" content="Connect with certified doctors instantly through secure video consultations. Get medical advice, prescriptions, and follow-up care from the comfort of your home.">
+    <meta name="keywords" content="healthcare, telemedicine, doctor consultation, video call, medical advice, prescription">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Serenity Healthcare - Digital Healthcare Platform">
+    <meta property="og:description" content="Connect with certified doctors instantly through secure video consultations">
+    <meta property="og:image" content="https://serenity-healthcare.com/og-image.jpg">
+    <meta property="og:url" content="https://serenity-healthcare.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Styles -->
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: #e5e7eb;
+            --background: #ffffff;
+            --background-secondary: #f9fafb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --border-radius: 0.5rem;
+            --border-radius-lg: 0.75rem;
+            --border-radius-xl: 1rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--background);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-brand i {
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--border-color);
+            color: var(--text-primary);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-ghost {
+            color: var(--text-secondary);
+            background: transparent;
+        }
+
+        .btn-ghost:hover {
+            color: var(--primary-color);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.8;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 0.8s ease;
+        }
+
+        .hero-card {
+            width: 320px;
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-xl);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .doctor-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success-color);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.online {
+            background: var(--success-color);
+        }
+
+        .status-dot.busy {
+            background: var(--warning-color);
+        }
+
+        .card-content {
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder {
+            height: 180px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: white;
+        }
+
+        .video-placeholder i {
+            font-size: 2rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        .btn-danger {
+            background: var(--error-color);
+            color: white;
+        }
+
+        /* Trust Indicators */
+        .trust {
+            padding: 3rem 0;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .trust-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .trust-item i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background: var(--background-secondary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-link:hover {
+            gap: 1rem;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .step-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+        }
+
+        /* Doctors Section */
+        .doctors {
+            padding: 5rem 0;
+            background: var(--background-secondary);
+        }
+
+        .doctor-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background: white;
+            border-radius: 50px;
+            color: var(--text-primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--primary-color);
+            color: white;
+            background: var(--primary-color);
+        }
+
+        .doctors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .doctor-avatar {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+        }
+
+        .doctor-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .status-indicator {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .status-indicator.online {
+            background: var(--success-color);
+        }
+
+        .status-indicator.busy {
+            background: var(--warning-color);
+        }
+
+        .doctor-info {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .doctor-info h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .specialty {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .doctor-meta {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .doctor-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu,
+            .nav-actions {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid,
+            .steps-grid,
+            .doctors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .doctor-actions {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-content h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-active .nav-menu {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow-lg);
+            padding: 2rem;
+            gap: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .nav-actions {
+            display: flex !important;
+            flex-direction: column;
+            position: absolute;
+            top: 280px;
+            left: 0;
+            right: 0;
+            background: var(--background-secondary);
+            padding: 1rem 2rem;
+            gap: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-active .mobile-menu-toggle span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--background-secondary);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Account Panel Styles */
+        .account-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 450px;
+            background: white;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .account-panel.active {
+            transform: translateX(0);
+        }
+
+        .account-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 9998;
+        }
+
+        .account-content {
+            height: 100%;
+            overflow-y: auto;
+            background: white;
+            padding-bottom: 80px;
+        }
+
+        .account-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .account-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .account-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+
+        .account-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        .account-content::-webkit-scrollbar-thumb:active {
+            background: #8b8b8b;
+        }
+
+        .account-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--background-secondary);
+        }
+
+        .account-header h3 {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .account-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .account-close:hover {
+            background: var(--background-secondary);
+            color: var(--text-primary);
+        }
+
+        .account-body {
+            padding: 1.5rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--background-secondary);
+            border-radius: var(--border-radius-lg);
+        }
+
+        .user-avatar-large {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .user-details h4 {
+            margin: 0 0 0.25rem 0;
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .user-details p {
+            margin: 0 0 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .user-meta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .user-meta span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            background: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--border-radius);
+        }
+
+        .account-section {
+            margin-bottom: 2rem;
+        }
+
+        .account-section h5 {
+            margin: 0 0 1rem 0;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .booking-list {
+            margin-bottom: 1rem;
+        }
+
+        .booking-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1rem;
+            background: var(--background-secondary);
+            border-radius: var(--border-radius);
+            margin-bottom: 0.75rem;
+        }
+
+        .booking-info h6 {
+            margin: 0 0 0.25rem 0;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .booking-info p {
+            margin: 0 0 0.25rem 0;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .booking-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .booking-status {
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--border-radius);
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .booking-status.confirmed {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .booking-status.pending {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+        }
+
+        .records-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .record-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background: var(--background-secondary);
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .record-item i {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .record-item span {
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0.5rem;
+            background: var(--background-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .action-btn i {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-btn span {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .account-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--background-secondary);
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-danger {
+            background: var(--error-color);
+            border-color: var(--error-color);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+            border-color: #dc2626;
+        }
+
+        /* Mobile Responsive for Account Panel */
+        @media (max-width: 768px) {
+            .account-panel {
+                max-width: 100%;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .records-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <i class="fas fa-heart-pulse"></i>
+                <span>Serenity</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#doctors" class="nav-link">Doctors</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li><a href="#how-it-works" class="nav-link">How it Works</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-ghost" onclick="showAccountPanel()" style="display: none;" id="accountBtn">
+                    <i class="fas fa-user"></i>
+                    Account
+                </button>
+                <button class="btn btn-outline" onclick="logout()" style="display: none;" id="signOutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sign Out
+                </button>
+                <a href="login.html" class="btn btn-ghost" id="signInBtn">Sign In</a>
+                <a href="register.html" class="btn btn-primary" id="getStartedBtn">Get Started Free</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Account Panel -->
+    <div id="accountPanel" class="account-panel" style="display: none;">
+        <div class="account-backdrop" onclick="closeAccountPanel()"></div>
+        <div class="account-content">
+            <div class="account-header">
+                <h3>My Account</h3>
+                <button class="account-close" onclick="closeAccountPanel()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="account-body">
+                <div class="user-profile">
+                    <div class="user-avatar-large">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <h4 id="accountUserName">John Doe</h4>
+                        <p id="accountUserEmail">john@example.com</p>
+                        <div class="user-meta">
+                            <span id="accountUserAge">25 years</span>
+                            <span id="accountUserGender">Male</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="account-sections">
+                    <div class="account-section">
+                        <h5>My Bookings</h5>
+                        <div class="booking-list" id="userBookings">
+                            <div class="booking-item">
+                                <div class="booking-info">
+                                    <h6>Dr. Sarah Johnson</h6>
+                                    <p>General Practice - Video Consultation</p>
+                                    <span class="booking-date">Dec 15, 2024 - 10:00 AM</span>
+                                </div>
+                                <span class="booking-status confirmed">Confirmed</span>
+                            </div>
+                            <div class="booking-item">
+                                <div class="booking-info">
+                                    <h6>Dr. Michael Chen</h6>
+                                    <p>Cardiology - In-Person Visit</p>
+                                    <span class="booking-date">Dec 20, 2024 - 2:30 PM</span>
+                                </div>
+                                <span class="booking-status pending">Pending</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">View All Bookings</button>
+                    </div>
+                    
+                    <div class="account-section">
+                        <h5>Medical Records</h5>
+                        <div class="records-summary">
+                            <div class="record-item">
+                                <i class="fas fa-file-medical"></i>
+                                <span>3 Prescriptions</span>
+                            </div>
+                            <div class="record-item">
+                                <i class="fas fa-notes-medical"></i>
+                                <span>5 Consultations</span>
+                            </div>
+                            <div class="record-item">
+                                <i class="fas fa-test-tube"></i>
+                                <span>2 Lab Reports</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline btn-small">View Medical History</button>
+                    </div>
+                    
+                    <div class="account-section">
+                        <h5>Quick Actions</h5>
+                        <div class="quick-actions">
+                            <button class="action-btn">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Book Appointment</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-user-md"></i>
+                                <span>Find Doctors</span>
+                            </button>
+                            <button class="action-btn">
+                                <i class="fas fa-cog"></i>
+                                <span>Settings</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="account-footer">
+                <button class="btn btn-danger btn-small" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sign Out
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-shield-check"></i>
+                    <span>Trusted by 10,000+ patients</span>
+                </div>
+                <h1 class="hero-title">
+                    Healthcare <span class="text-gradient">Reimagined</span>
+                    <br>for Your Convenience
+                </h1>
+                <p class="hero-description">
+                    Connect with certified doctors instantly through secure video consultations. 
+                    Get medical advice, prescriptions, and follow-up care from the comfort of your home.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large">
+                        <i class="fas fa-search"></i>
+                        Find Doctors
+                    </button>
+                    <button class="btn btn-outline btn-large" style="background: rgba(255, 255, 255, 0.2); border-color: white; color: white;">
+                        <i class="fas fa-play-circle"></i>
+                        Watch Demo
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Expert Doctors</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Patient Rating</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="card-header">
+                        <div class="doctor-status">
+                            <div class="status-dot online"></div>
+                            <span>Dr. Sarah Johnson</span>
+                        </div>
+                        <button class="btn-small" style="background: rgba(255, 255, 255, 0.2); border: none; color: white;">
+                            <i class="fas fa-ellipsis-vertical"></i>
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="video-placeholder" id="heroVideoContainer">
+                            <i class="fas fa-video" id="videoIcon"></i>
+                            <span id="videoText">Video Consultation</span>
+                            <button id="startCameraBtn" class="btn btn-small" style="position: absolute; top: 10px; right: 10px; background: var(--primary-color); color: white; border: none; display: none;">
+                                <i class="fas fa-camera"></i>
+                                Start Camera
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn-small" style="background: rgba(255, 255, 255, 0.2); border: none; color: white;">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                        <button class="btn-small" style="background: rgba(255, 255, 255, 0.2); border: none; color: white;">
+                            <i class="fas fa-video"></i>
+                        </button>
+                        <button class="btn-small btn-danger">
+                            <i class="fas fa-phone-slash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust">
+        <div class="trust-grid">
+            <div class="trust-item">
+                <i class="fas fa-award"></i>
+                <span>Board Certified Doctors</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-lock"></i>
+                <span>HIPAA Compliant</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-certificate"></i>
+                <span>Verified Reviews</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-hospital"></i>
+                <span>Hospital Partners</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Features</div>
+                <h2 class="section-title">Why Choose Serenity</h2>
+                <p class="section-subtitle">Experience healthcare that puts you first</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card" onclick="window.location.href='scheduling.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-days"></i>
+                    </div>
+                    <h3>Smart Scheduling</h3>
+                    <p>Book appointments that fit your schedule with our intelligent booking system</p>
+                    <a href="scheduling.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='video-calls.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>HD Video Calls</h3>
+                    <p>Crystal-clear video consultations with no technical hassles</p>
+                    <a href="video-calls.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='digital-prescriptions.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>Digital Prescriptions</h3>
+                    <p>Get prescriptions sent directly to your preferred pharmacy</p>
+                    <a href="digital-prescriptions.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='availability.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Availability</h3>
+                    <p>Access medical care whenever you need it, day or night</p>
+                    <a href="availability.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='medical-records.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Medical Records</h3>
+                    <p>Secure access to your complete medical history</p>
+                    <a href="medical-records.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card emergency-card" onclick="showEmergencyModal()" style="cursor: pointer; border: 2px solid #ef4444; background: linear-gradient(135deg, #fef2f2, #ffffff);">
+                    <div class="feature-icon" style="background: linear-gradient(135deg, #ef4444, #dc2626);">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3 style="color: #ef4444;">Emergency Services</h3>
+                    <p>24/7 emergency medical assistance and urgent care support</p>
+                    <a href="#" class="feature-link" style="color: #ef4444;" onclick="event.stopPropagation(); showEmergencyModal(); return false;">Get Help <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card" onclick="window.location.href='mobile-app.html'" style="cursor: pointer;">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-screen"></i>
+                    </div>
+                    <h3>Mobile App</h3>
+                    <p>Take your healthcare with you wherever you go</p>
+                    <a href="mobile-app.html" class="feature-link" onclick="event.stopPropagation()">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Process</div>
+                <h2 class="section-title">How Serenity Works</h2>
+                <p class="section-subtitle">Get started in three simple steps</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Sign Up & Create Profile</h3>
+                        <p>Register in minutes and complete your medical profile</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Find Your Doctor</h3>
+                        <p>Browse available doctors by specialty or search by name</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Start Consultation</h3>
+                        <p>Connect instantly via video or schedule for later</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="doctors">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Doctors</div>
+                <h2 class="section-title">Available Doctors Now</h2>
+                <p class="section-subtitle">Connect with certified healthcare professionals</p>
+            </div>
+            <div class="doctor-filters">
+                <button class="filter-btn active">All Doctors</button>
+                <button class="filter-btn">General Practice</button>
+                <button class="filter-btn">Cardiology</button>
+                <button class="filter-btn">Pediatrics</button>
+                <button class="filter-btn">Mental Health</button>
+            </div>
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <div class="doctor-avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyuJHOyRsOqothDPzXJfOqrDz4ukQy4DaxA&s" alt="Dr. Sarah Johnson">
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="doctor-info">
+                        <h4>Dr. Sarah Johnson</h4>
+                        <p class="specialty">General Practice</p>
+                        <div class="doctor-meta">
+                            <span class="rating">
+                                <i class="fas fa-star"></i> 4.9
+                            </span>
+                            <span class="experience">15 years exp</span>
+                        </div>
+                    </div>
+                    <div class="doctor-actions">
+                        <a href="doctors.html" class="btn btn-outline btn-small">View Profile</a>
+                        <a href="doctors.html" class="btn btn-primary btn-small">Consult Now</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyuJHOyRsOqothDPzXJfOqrDz4ukQy4DaxA&s" alt="Dr. Michael Chen">
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="doctor-info">
+                        <h4>Dr. Michael Chen</h4>
+                        <p class="specialty">Cardiology</p>
+                        <div class="doctor-meta">
+                            <span class="rating">
+                                <i class="fas fa-star"></i> 4.8
+                            </span>
+                            <span class="experience">12 years exp</span>
+                        </div>
+                    </div>
+                    <div class="doctor-actions">
+                        <a href="doctors.html" class="btn btn-outline btn-small">View Profile</a>
+                        <a href="doctors.html" class="btn btn-primary btn-small">Consult Now</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyuJHOyRsOqothDPzXJfOqrDz4ukQy4DaxA&s" alt="Dr. Emily Rodriguez">
+                        <div class="status-indicator busy"></div>
+                    </div>
+                    <div class="doctor-info">
+                        <h4>Dr. Emily Rodriguez</h4>
+                        <p class="specialty">Pediatrics</p>
+                        <div class="doctor-meta">     
+                            <span class="rating">
+                                <i class="fas fa-star"></i> 5.0
+                            </span>
+                            <span class="experience">8 years exp</span>
+                        </div>
+                    </div>
+                    <div class="doctor-actions">
+                        <a href="doctors.html" class="btn btn-outline btn-small">View Profile</a>
+                        <button class="btn btn-secondary btn-small" onclick="showDoctorProfile('Emily Rodriguez')">Book Later</a>
+                    </div>
+                </div>
+                
+                <div class="doctor-card">
+                    <div class="doctor-avatar">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyuJHOyRsOqothDPzXJfOqrDz4ukQy4DaxA&s" alt="Dr. James Wilson">
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="doctor-info">
+                        <h4>Dr. James Wilson</h4>
+                        <p class="specialty">Mental Health</p>
+                        <div class="doctor-meta">
+                            <span class="rating">
+                                <i class="fas fa-star"></i> 4.7
+                            </span>
+                            <span class="experience">10 years exp</span>
+                        </div>
+                    </div>
+                    <div class="doctor-actions">
+                        <a href="doctors.html" class="btn btn-outline btn-small">View Profile</a>
+                        <a href="doctors.html" class="btn btn-primary btn-small">Consult Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Healthcare Experience?</h2>
+                <p>Join thousands of patients who have already discovered the convenience of telemedicine</p>
+                <div class="cta-actions">
+                    <button class="btn btn-primary btn-large">Start Free Trial</button>
+                    <button class="btn btn-outline btn-large" style="background: rgba(255, 255, 255, 0.2); border-color: white; color: white;">Download App</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <i class="fas fa-heart-pulse"></i>
+                        <span>Sernity</span>
+                    </div>
+                    <p>Your trusted partner in digital healthcare, providing quality medical consultations at your fingertips.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="index.html">Features</a></li>
+                        <li><a href="doctors.html">Doctors</a></li>
+                        <li><a href="index.html">Services</a></li>
+                        <li><a href="#">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#" onclick="showSupportModal('help')">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#" onclick="showSupportModal('faq')">FAQs</a></li>
+                        <li><a href="#" onclick="showSupportModal('privacy')">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showSupportModal('terms')">Terms of Service</a></li>
+                        <li><a href="tel:+1-800-SERENITY" onclick="showNotification('Calling support helpline...', 'info')">24/7 Support</a></li>
+                        <li><a href="mailto:support@serenity-healthcare.com" onclick="showNotification('Opening email client...', 'info')">Email Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Serenity Healthcare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Emergency Modal -->
+    <div id="emergencyModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px; border: 2px solid #ef4444;">
+            <div class="modal-header" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;">
+                <h3>Emergency Services</h3>
+                <button class="modal-close" onclick="closeEmergencyModal()" style="color: white;">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" style="padding: 2rem;">
+                <div class="emergency-options">
+                    <div class="emergency-option" style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">Emergency Hotline</h4>
+                        <p style="font-size: 1.5rem; font-weight: bold; color: #1f2937; margin-bottom: 0.5rem;">108</p>
+                        <p style="color: #6b7280; font-size: 0.875rem;">National Emergency Number</p>
+                    </div>
+                    
+                    <div class="emergency-option" style="text-align: center; margin-bottom: 1.5rem;">
+                        <div style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">Nearest Hospital</h4>
+                        <p style="color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem;">Find the closest emergency medical facility</p>
+                        <button class="btn btn-primary" style="background: #ef4444; border-color: #ef4444;">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Find Hospitals
+                        </button>
+                    </div>
+                    
+                    <div class="emergency-option" style="text-align: center;">
+                        <div style="font-size: 3rem; color: #ef4444; margin-bottom: 1rem;">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h4 style="color: #ef4444; margin-bottom: 0.5rem;">Emergency Doctor</h4>
+                        <p style="color: #6b7280; font-size: 0.875rem; margin-bottom: 1rem;">Connect with an emergency physician immediately</p>
+                        <button class="btn btn-primary" style="background: #ef4444; border-color: #ef4444;">
+                            <i class="fas fa-video"></i>
+                            Emergency Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Navigation Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            const navActions = document.querySelector('.nav-actions');
+            const body = document.body;
+            
+            // Smooth scrolling for navigation links
+            const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        const headerOffset = 80; // Account for fixed navbar
+                        const elementPosition = targetSection.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (body.classList.contains('mobile-menu-active')) {
+                            mobileMenuToggle.classList.remove('active');
+                            navMenu.classList.remove('active');
+                            navActions.classList.remove('active');
+                            body.classList.remove('mobile-menu-active');
+                        }
+                    }
+                });
+            });
+            
+            if (mobileMenuToggle) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    body.classList.toggle('mobile-menu-active');
+                });
+            }
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    body.classList.remove('mobile-menu-active');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileMenuToggle.contains(e.target) && !navMenu.contains(e.target) && !navActions.contains(e.target)) {
+                    body.classList.remove('mobile-menu-active');
+                }
+            });
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Doctor Filter Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const doctorCards = document.querySelectorAll('.doctor-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filter = this.textContent.trim();
+                    
+                    // Simple filtering logic (in real app, this would filter actual data)
+                    if (filter === 'All Doctors') {
+                        doctorCards.forEach(card => {
+                            card.style.display = 'block';
+                            card.style.animation = 'fadeInUp 0.5s ease';
+                        });
+                    } else {
+                        // Simulate filtering
+                        doctorCards.forEach((card, index) => {
+                            if (index % 3 === 0 && filter !== 'General Practice') {
+                                card.style.display = 'none';
+                            } else {
+                                card.style.display = 'block';
+                                card.style.animation = 'fadeInUp 0.5s ease';
+                            }
+                        });
+                    }
+                    
+                    // Show notification
+                    showNotification(`Filtering by ${filter}`, 'info');
+                });
+            });
+        });
+
+        // Button Click Handlers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find Doctors button
+            const findDoctorsBtn = document.querySelector('.hero-actions .btn-primary');
+            if (findDoctorsBtn) {
+                findDoctorsBtn.addEventListener('click', function() {
+                    document.querySelector('#doctors').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            }
+            
+            // Watch Demo button
+            const watchDemoBtn = document.querySelector('.hero-actions .btn-outline');
+            if (watchDemoBtn) {
+                watchDemoBtn.addEventListener('click', function() {
+                    showNotification('Demo video coming soon!', 'info');
+                });
+            }
+            
+            // Get Started link
+            const getStartedLink = document.querySelector('.nav-actions .btn-primary');
+            if (getStartedLink) {
+                getStartedLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showNotification('Redirecting to registration...', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'register.html';
+                    }, 1000);
+                });
+            }
+            
+            // CTA buttons
+            const ctaButtons = document.querySelectorAll('.cta-actions .btn');
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('Free Trial')) {
+                        showNotification('Starting your free trial...', 'success');
+                    } else if (this.textContent.includes('Download App')) {
+                        showNotification('Redirecting to app store...', 'info');
+                    }
+                });
+            });
+            
+            // Doctor action buttons
+            const doctorActionBtns = document.querySelectorAll('.doctor-actions .btn');
+            doctorActionBtns.forEach(button => {
+                button.addEventListener('click', function() {
+                    const doctorName = this.closest('.doctor-card').querySelector('h4').textContent;
+                    if (this.textContent.includes('Consult Now')) {
+                        showNotification(`Starting consultation with ${doctorName}...`, 'success');
+                    } else if (this.textContent.includes('View Profile')) {
+                        showNotification(`Loading profile for ${doctorName}...`, 'info');
+                    } else if (this.textContent.includes('Book Later')) {
+                        showNotification(`Booking consultation with ${doctorName}...`, 'info');
+                    }
+                });
+            });
+            
+            // Feature links
+            const featureLinks = document.querySelectorAll('.feature-link');
+            featureLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const featureName = this.closest('.feature-card').querySelector('h3').textContent;
+                    showNotification(`Learn more about ${featureName}`, 'info');
+                });
+            });
+        });
+
+        // Notification System
+        function showNotification(message, type = 'info') {
+            // Remove existing notification
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.textContent = message;
+            
+            // Style the notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                padding: 16px 24px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 10000;
+                animation: slideInRight 0.3s ease;
+                max-width: 300px;
+                word-wrap: break-word;
+            `;
+            
+            // Set background color based on type
+            switch(type) {
+                case 'success':
+                    notification.style.background = '#10b981';
+                    break;
+                case 'error':
+                    notification.style.background = '#ef4444';
+                    break;
+                case 'warning':
+                    notification.style.background = '#f59e0b';
+                    break;
+                default:
+                    notification.style.background = '#667eea';
+            }
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Add notification animations to CSS
+        const notificationStyles = document.createElement('style');
+        notificationStyles.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        document.head.appendChild(notificationStyles);
+
+        // Intersection Observer for Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.feature-card, .step-card, .doctor-card, .trust-item');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                observer.observe(el);
+            });
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Sernity Healthcare Platform initialized');
+            
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.feature-card, .doctor-card, .step-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+
+        // Emergency Modal Functions
+        function showEmergencyModal() {
+            const modal = document.getElementById('emergencyModal');
+            modal.style.display = 'flex';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Add modal backdrop
+            const backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop';
+            backdrop.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+            `;
+            backdrop.onclick = closeEmergencyModal;
+            document.body.appendChild(backdrop);
+        }
+
+        function closeEmergencyModal() {
+            const modal = document.getElementById('emergencyModal');
+            modal.style.display = 'none';
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Remove backdrop
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.remove();
+            }
+        }
+
+        // Emergency Service Functions
+        function callEmergencyHotline() {
+            // Show confirmation before calling
+            if (confirm('Are you sure you want to call the emergency hotline 108?\n\nThis will connect you to the national emergency medical service.')) {
+                // In a real app, this would initiate a phone call
+                showNotification('Calling emergency hotline 108...', 'success');
+                
+                // Simulate phone call initiation
+                setTimeout(() => {
+                    showNotification('Emergency services have been notified. Help is on the way!', 'success');
+                    closeEmergencyModal();
+                }, 2000);
+            }
+        }
+
+        function findNearestHospital() {
+            showNotification('Finding nearest hospitals...', 'info');
+            
+            // Simulate location detection and hospital search
+            setTimeout(() => {
+                // Create hospital list modal
+                const hospitalModal = document.createElement('div');
+                hospitalModal.className = 'modal';
+                hospitalModal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 10001;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `;
+                
+                hospitalModal.innerHTML = `
+                    <div class="modal-content" style="max-width: 600px; background: white; border-radius: 12px; padding: 2rem; max-height: 80vh; overflow-y: auto;">
+                        <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                            <h3 style="margin: 0; color: #1f2937; font-size: 1.5rem;">Nearest Emergency Hospitals</h3>
+                            <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+                        </div>
+                        <div class="hospital-list">
+                            <div class="hospital-item" style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">City General Hospital</h4>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">Emergency Department • 2.5 km away</p>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">24/7 Emergency Services Available</p>
+                                        <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                            <span style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Open Now</span>
+                                            <span style="background: #3b82f6; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">ER Available</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <button onclick="getDirections('City General Hospital')" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-directions"></i> Directions
+                                        </button>
+                                        <button onclick="callHospital('080-1234567')" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-phone"></i> Call
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hospital-item" style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">MediCare Emergency Center</h4>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">Emergency Care • 4.1 km away</p>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">Specialized Emergency Treatment</p>
+                                        <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                            <span style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Open Now</span>
+                                            <span style="background: #f59e0b; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">15 min wait</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <button onclick="getDirections('MediCare Emergency Center')" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-directions"></i> Directions
+                                        </button>
+                                        <button onclick="callHospital('080-2345678')" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-phone"></i> Call
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hospital-item" style="border: 1px solid #e5e7eb; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                                <div style="display: flex; justify-content: space-between; align-items: start;">
+                                    <div>
+                                        <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">St. Mary's Medical Center</h4>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">Trauma Center • 5.8 km away</p>
+                                        <p style="margin: 0 0 0.5rem 0; color: #6b7280; font-size: 0.875rem;">Level 1 Trauma Center</p>
+                                        <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                                            <span style="background: #10b981; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Open Now</span>
+                                            <span style="background: #ef4444; color: white; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Trauma</span>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                        <button onclick="getDirections('St. Mary\\'s Medical Center')" style="background: #3b82f6; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-directions"></i> Directions
+                                        </button>
+                                        <button onclick="callHospital('080-3456789')" style="background: #10b981; color: white; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                                            <i class="fas fa-phone"></i> Call
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <p style="color: #6b7280; font-size: 0.875rem; margin: 0;">📍 Location services enabled • Showing hospitals within 10km</p>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(hospitalModal);
+                closeEmergencyModal();
+            }, 1500);
+        }
+
+        function startEmergencyConsultation() {
+            // Check if user is authenticated
+            const currentUser = localStorage.getItem('serenity_user');
+            
+            if (!currentUser) {
+                // User needs to login first
+                if (confirm('Emergency consultation requires login. Would you like to sign in now?')) {
+                    window.location.href = 'login.html?redirect=' + encodeURIComponent(window.location.href) + '&emergency=true';
+                }
+                return;
+            }
+            
+            showNotification('Connecting to emergency doctor...', 'info');
+            closeEmergencyModal();
+            
+            // Simulate connecting to emergency doctor
+            setTimeout(() => {
+                // Create emergency consultation modal
+                const consultModal = document.createElement('div');
+                consultModal.className = 'modal';
+                consultModal.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(0, 0, 0, 0.5);
+                    z-index: 10001;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `;
+                
+                consultModal.innerHTML = `
+                    <div class="modal-content" style="max-width: 500px; background: white; border-radius: 12px; padding: 2rem;">
+                        <div class="modal-header" style="text-align: center; margin-bottom: 1.5rem;">
+                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                                <i class="fas fa-user-md" style="color: white; font-size: 2rem;"></i>
+                            </div>
+                            <h3 style="margin: 0 0 0.5rem 0; color: #1f2937;">Emergency Doctor Connected</h3>
+                            <p style="margin: 0; color: #6b7280;">Dr. Emergency Specialist is ready to consult</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="background: #f0f9ff; border: 1px solid #0ea5e9; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+                                <p style="margin: 0; color: #0369a1; font-weight: 500;">⚠️ Emergency Consultation Started</p>
+                                <p style="margin: 0.5rem 0 0 0; color: #0c4a6e; font-size: 0.875rem;">Please describe your emergency situation</p>
+                            </div>
+                            <div style="display: flex; gap: 1rem; justify-content: center;">
+                                <button onclick="startVideoCall()" style="background: #10b981; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
+                                    <i class="fas fa-video"></i> Start Video Call
+                                </button>
+                                <button onclick="startVoiceCall()" style="background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 8px; cursor: pointer; font-weight: 500;">
+                                    <i class="fas fa-phone"></i> Voice Call
+                                </button>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <button onclick="this.closest('.modal').remove()" style="background: none; border: 1px solid #d1d5db; color: #6b7280; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(consultModal);
+            }, 2000);
+        }
+
+        // Helper functions for emergency services
+        function getDirections(hospitalName) {
+            showNotification(`Getting directions to ${hospitalName}...`, 'info');
+            
+            // Hospital coordinates in Bangalore
+            const hospitalLocations = {
+                'City General Hospital': { lat: 12.9716, lng: 77.5946, address: 'MG Road, Bangalore' },
+                'MediCare Emergency Center': { lat: 12.9352, lng: 77.6244, address: 'Indiranagar, Bangalore' },
+                'St. Mary\'s Medical Center': { lat: 12.9784, lng: 77.6408, address: 'Whitefield, Bangalore' }
+            };
+            
+            const location = hospitalLocations[hospitalName];
+            if (location) {
+                // Open Google Maps with directions
+                const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${location.lat},${location.lng}&destination_place_id=${encodeURIComponent(hospitalName + ', ' + location.address)}`;
+                window.open(mapsUrl, '_blank');
+                showNotification(`Directions to ${hospitalName} opened in Google Maps`, 'success');
+            } else {
+                // Fallback for unknown hospitals
+                const searchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(hospitalName + ', Bangalore')}`;
+                window.open(searchUrl, '_blank');
+                showNotification(`Searching for ${hospitalName} in Google Maps...`, 'info');
+            }
+        }
+
+        function callHospital(phoneNumber) {
+            if (confirm(`Call ${hospitalName} at ${phoneNumber}?`)) {
+                showNotification(`Calling ${phoneNumber}...`, 'success');
+                // In a real app, this would initiate a phone call
+            }
+        }
+
+        function startVideoCall() {
+            showNotification('Starting emergency video consultation...', 'success');
+            // In a real app, this would start a video call
+            setTimeout(() => {
+                showNotification('Video consultation started with emergency doctor', 'success');
+            }, 2000);
+        }
+
+        function startVoiceCall() {
+            showNotification('Starting emergency voice consultation...', 'success');
+            // In a real app, this would start a voice call
+            setTimeout(() => {
+                showNotification('Voice consultation started with emergency doctor', 'success');
+            }, 2000);
+        }
+
+        // Add event listeners to emergency buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click handlers to emergency buttons
+            setTimeout(() => {
+                const emergencyButtons = document.querySelectorAll('.emergency-option button');
+                emergencyButtons.forEach((button, index) => {
+                    button.addEventListener('click', function() {
+                        if (index === 0) {
+                            // Find Hospitals button
+                            findNearestHospital();
+                        } else if (index === 1) {
+                            // Emergency Consultation button
+                            startEmergencyConsultation();
+                        }
+                    });
+                });
+                
+                // Make emergency hotline clickable
+                const hotlineElement = document.querySelector('.emergency-option p[style*="1.5rem"]');
+                if (hotlineElement) {
+                    hotlineElement.style.cursor = 'pointer';
+                    hotlineElement.style.textDecoration = 'underline';
+                    hotlineElement.addEventListener('click', callEmergencyHotline);
+                }
+            }, 100);
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEmergencyModal();
+                closeAccountPanel();
+            }
+        });
+
+        // Authentication System
+        class AuthSystem {
+            constructor() {
+                this.initializeAuth();
+            }
+
+            initializeAuth() {
+                this.updateNavigation();
+                this.checkLoginStatus();
+            }
+
+            isAuthenticated() {
+                const user = localStorage.getItem('serenity_user');
+                if (!user) return false;
+                
+                const userData = JSON.parse(user);
+                const expiresAt = new Date(userData.expiresAt);
+                return expiresAt > new Date();
+            }
+
+            getCurrentUser() {
+                const user = localStorage.getItem('serenity_user');
+                return user ? JSON.parse(user) : null;
+            }
+
+            updateNavigation() {
+                const accountBtn = document.getElementById('accountBtn');
+                const signOutBtn = document.getElementById('signOutBtn');
+                const signInBtn = document.getElementById('signInBtn');
+                const getStartedBtn = document.getElementById('getStartedBtn');
+                const currentUser = this.getCurrentUser();
+                
+                if (currentUser && this.isAuthenticated()) {
+                    // Show logged-in user navigation
+                    accountBtn.style.display = 'inline-flex';
+                    signOutBtn.style.display = 'inline-flex';
+                    signInBtn.style.display = 'none';
+                    getStartedBtn.style.display = 'none';
+                } else {
+                    // Show default navigation
+                    accountBtn.style.display = 'none';
+                    signOutBtn.style.display = 'none';
+                    signInBtn.style.display = 'inline-flex';
+                    getStartedBtn.style.display = 'inline-flex';
+                }
+            }
+
+            checkLoginStatus() {
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('logged_in') === 'true') {
+                    const currentUser = this.getCurrentUser();
+                    if (currentUser) {
+                        // Show welcome message
+                        this.showWelcomeMessage(currentUser);
+                        // Clean up URL
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+                }
+            }
+
+            showWelcomeMessage(user) {
+                // Create welcome notification
+                const welcomeDiv = document.createElement('div');
+                welcomeDiv.className = 'welcome-notification';
+                welcomeDiv.innerHTML = `
+                    <div class="welcome-content">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Welcome back, ${user.firstName}! You're now logged in.</span>
+                        <button class="welcome-close" onclick="this.parentElement.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add styles
+                if (!document.getElementById('welcomeStyles')) {
+                    const style = document.createElement('style');
+                    style.id = 'welcomeStyles';
+                    style.textContent = `
+                        .welcome-notification {
+                            position: fixed;
+                            top: 100px;
+                            right: 20px;
+                            background: white;
+                            border-radius: var(--border-radius-lg);
+                            box-shadow: var(--shadow-xl);
+                            z-index: 1001;
+                            animation: slideInRight 0.5s ease;
+                            max-width: 350px;
+                        }
+                        
+                        .welcome-content {
+                            display: flex;
+                            align-items: center;
+                            gap: 1rem;
+                            padding: 1rem;
+                        }
+                        
+                        .welcome-content i {
+                            color: var(--success-color);
+                            font-size: 1.25rem;
+                        }
+                        
+                        .welcome-content span {
+                            flex: 1;
+                            color: var(--text-primary);
+                            font-weight: 500;
+                        }
+                        
+                        .welcome-close {
+                            background: none;
+                            border: none;
+                            color: var(--text-secondary);
+                            cursor: pointer;
+                            padding: 0.25rem;
+                            border-radius: var(--border-radius);
+                            transition: var(--transition);
+                        }
+                        
+                        .welcome-close:hover {
+                            background: var(--background-secondary);
+                            color: var(--text-primary);
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+                
+                document.body.appendChild(welcomeDiv);
+                
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (welcomeDiv.parentElement) {
+                        welcomeDiv.remove();
+                    }
+                }, 5000);
+            }
+
+            logout() {
+                localStorage.removeItem('serenity_user');
+                localStorage.removeItem('serenity_session');
+                window.location.href = 'index.html';
+            }
+
+            getMedicalRecords() {
+                // Check if user has medical records
+                const records = localStorage.getItem('user_medical_records');
+                if (records) {
+                    return JSON.parse(records);
+                }
+                
+                // Default empty state
+                return {
+                    prescriptions: 0,
+                    consultations: 0,
+                    labReports: 0
+                };
+            }
+        }
+
+        // Doctor Profile Functions
+        function showDoctorProfile(doctorName) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 10001;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            `;
+            
+            const doctorData = {
+                'Sarah Johnson': {
+                    specialty: 'General Practice',
+                    experience: '15 years',
+                    rating: 4.9,
+                    education: 'MD, Harvard Medical School',
+                    languages: 'English, Spanish',
+                    bio: 'Dr. Johnson is a board-certified family physician with extensive experience in primary care and preventive medicine.',
+                    availability: 'Available today'
+                },
+                'Michael Chen': {
+                    specialty: 'Cardiology',
+                    experience: '12 years',
+                    rating: 4.8,
+                    education: 'MD, Johns Hopkins University',
+                    languages: 'English, Mandarin',
+                    bio: 'Dr. Chen specializes in interventional cardiology and has performed over 500 successful cardiac procedures.',
+                    availability: 'Available today'
+                },
+                'Emily Rodriguez': {
+                    specialty: 'Pediatrics',
+                    experience: '8 years',
+                    rating: 5.0,
+                    education: 'MD, Stanford Medical School',
+                    languages: 'English, Spanish',
+                    bio: 'Dr. Rodriguez is dedicated to providing compassionate care for children from infancy through adolescence.',
+                    availability: 'Busy - Available tomorrow'
+                },
+                'James Wilson': {
+                    specialty: 'Mental Health',
+                    experience: '10 years',
+                    rating: 4.7,
+                    education: 'PhD, Yale University',
+                    languages: 'English',
+                    bio: 'Dr. Wilson specializes in cognitive behavioral therapy and has helped over 1000 patients improve their mental health.',
+                    availability: 'Available today'
+                }
+            };
+            
+            const doctor = doctorData[doctorName];
+            if (!doctor) return;
+            
+            modal.innerHTML = `
+                <div class="modal-content" style="max-width: 600px; background: white; border-radius: 12px; padding: 2rem; max-height: 80vh; overflow-y: auto;">
+                    <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #1f2937; font-size: 1.5rem;">Dr. ${doctorName}</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+                        <div style="text-align: center;">
+                            <div style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 1rem; overflow: hidden;">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSyuJHOyRsOqothDPzXJfOqrDz4ukQy4DaxA&s" style="width: 100%; height: 100%; object-fit: cover;" alt="Dr. ${doctorName}">
+                            </div>
+                            <div style="text-align: center;">
+                                <span style="display: inline-block; padding: 0.25rem 0.75rem; background: #10b981; color: white; border-radius: 20px; font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                    ${doctor.availability}
+                                </span>
+                                <h4 style="margin: 0.5rem 0; color: #1f2937;">${doctor.specialty}</h4>
+                                <div style="display: flex; justify-content: center; gap: 1rem; margin: 0.5rem 0;">
+                                    <span style="color: #f59e0b;">⭐ ${doctor.rating}</span>
+                                    <span style="color: #6b7280;">📅 ${doctor.experience}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: #1f2937; margin-bottom: 0.5rem;">About Dr. ${doctorName.split(' ')[1]}</h4>
+                                <p style="color: #6b7280; line-height: 1.6;">${doctor.bio}</p>
+                            </div>
+                            <div style="margin-bottom: 1.5rem;">
+                                <h4 style="color: #1f2937; margin-bottom: 0.5rem;">Education & Experience</h4>
+                                <ul style="color: #6b7280; list-style: none; padding: 0;">
+                                    <li style="margin-bottom: 0.5rem;">🎓 ${doctor.education}</li>
+                                    <li style="margin-bottom: 0.5rem;">💼 ${doctor.experience} experience</li>
+                                    <li style="margin-bottom: 0.5rem;">🌍 Languages: ${doctor.languages}</li>
+                                </ul>
+                            </div>
+                            <div style="display: flex; gap: 1rem;">
+                                <button class="btn btn-primary" style="flex: 1;" onclick="startConsultation('${doctorName}')">
+                                    <i class="fas fa-video"></i> Start Consultation
+                                </button>
+                                <button class="btn btn-outline" style="flex: 1;" onclick="this.closest('.modal').remove()">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Add backdrop
+            const backdrop = document.createElement('div');
+            backdrop.className = 'modal-backdrop';
+            backdrop.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 9999;
+            `;
+            backdrop.onclick = () => modal.remove();
+            document.body.appendChild(backdrop);
+        }
+
+        function startConsultation(doctorName) {
+            const modal = document.querySelector('.modal');
+            if (modal) modal.remove();
+            
+            showNotification(`Starting consultation with Dr. ${doctorName}...`, 'success');
+            
+            // Simulate consultation start
+            setTimeout(() => {
+                showNotification(`Connected to Dr. ${doctorName} for video consultation`, 'success');
+                // In real app, this would start video call
+            }, 2000);
+        }
+
+        // Initialize Auth System
+        const authSystem = new AuthSystem();
+
+        // Account Panel Functions
+        function showAccountPanel() {
+            const panel = document.getElementById('accountPanel');
+            const currentUser = authSystem.getCurrentUser();
+            
+            if (currentUser) {
+                // Update user information
+                document.getElementById('accountUserName').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+                document.getElementById('accountUserEmail').textContent = currentUser.email;
+                document.getElementById('accountUserAge').textContent = `${currentUser.age} years`;
+                document.getElementById('accountUserGender').textContent = currentUser.gender.charAt(0).toUpperCase() + currentUser.gender.slice(1);
+                
+                // Check for user bookings and update display
+                updateUserBookings();
+                updateMedicalRecords();
+            }
+            
+            panel.style.display = 'flex';
+            setTimeout(() => {
+                panel.classList.add('active');
+            }, 10);
+        }
+
+        function updateUserBookings() {
+            const bookingList = document.getElementById('userBookings');
+            const userBookings = getUserBookings();
+            
+            if (userBookings.length === 0) {
+                // Show empty state
+                bookingList.innerHTML = `
+                    <div class="empty-state" style="text-align: center; padding: 2rem; color: #6b7280;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;">
+                            <i class="fas fa-calendar-times"></i>
+                        </div>
+                        <h6 style="margin: 0 0 0.5rem 0; color: #374151;">No Bookings Yet</h6>
+                        <p style="margin: 0; font-size: 0.875rem;">You haven't made any appointments yet</p>
+                    </div>
+                `;
+            } else {
+                // Show actual bookings
+                bookingList.innerHTML = userBookings.map(booking => `
+                    <div class="booking-item">
+                        <div class="booking-info">
+                            <h6>${booking.doctorName}</h6>
+                            <p>${booking.specialty} - ${booking.type}</p>
+                            <span class="booking-date">${booking.date}</span>
+                        </div>
+                        <span class="booking-status ${booking.status.toLowerCase()}">${booking.status}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function updateMedicalRecords() {
+            const recordsSummary = document.querySelector('.records-summary');
+            const medicalRecords = authSystem.getMedicalRecords();
+            
+            recordsSummary.innerHTML = `
+                <div class="record-item">
+                    <i class="fas fa-file-medical"></i>
+                    <span>${medicalRecords.prescriptions} Prescriptions</span>
+                </div>
+                <div class="record-item">
+                    <i class="fas fa-notes-medical"></i>
+                    <span>${medicalRecords.consultations} Consultations</span>
+                </div>
+                <div class="record-item">
+                    <i class="fas fa-test-tube"></i>
+                    <span>${medicalRecords.labReports} Lab Reports</span>
+                </div>
+            `;
+        }
+
+        function getUserBookings() {
+            // Check if user has any bookings in localStorage
+            const bookings = localStorage.getItem('user_bookings');
+            if (bookings) {
+                return JSON.parse(bookings);
+            }
+            
+            // For demo purposes, return empty array
+            // In a real app, this would fetch from backend
+            return [];
+        }
+
+        function closeAccountPanel() {
+            const panel = document.getElementById('accountPanel');
+            panel.classList.remove('active');
+            
+            setTimeout(() => {
+                panel.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to sign out?')) {
+                authSystem.logout();
+            }
+        }
+
+        // Close account panel when clicking outside
+        document.addEventListener('click', function(e) {
+            const panel = document.getElementById('accountPanel');
+            const accountContent = document.querySelector('.account-content');
+            const accountButton = e.target.closest('button[onclick*="showAccountPanel"]');
+            
+            if (panel && panel.style.display === 'flex' && 
+                !accountContent.contains(e.target) && 
+                !accountButton) {
+                closeAccountPanel();
+            }
+        });
+    </script>
+</body>
+</html>
